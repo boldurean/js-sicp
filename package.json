@@ -1,0 +1,27 @@
+{
+  "name": "generatorhtml--sicp",
+  "version": "1.0.0",
+  "description": "sicp",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsbdn/GeneratorHTML--SICP.git"
+  },
+  "author": "Vasilii Boldurean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vsbdn/GeneratorHTML--SICP/issues"
+  },
+  "homepage": "https://github.com/vsbdn/GeneratorHTML--SICP#readme",
+  "dependencies": {
+    "@hexlet/pairs-data": "^1.1.0",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "lodash": "^4.17.20"
+  }
+}
