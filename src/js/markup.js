@@ -28,6 +28,20 @@ export const toString = (list) => {
   return iter(list, '');
 };
 
+// teachers alternative toString:
+/*
+export const toString = (html) => {
+  if (isEmpty(html)) {
+    return '';
+  }
+  const element = head(html);
+  const tag = getName(element);
+  const value = getValue(element);
+  const restOfHtml = toString(tail(html));
+  return `${restOfHtml}<${tag}>${value}</${tag}>`;
+};
+*/
+
 const dom1 = make();
 // Создаем тег и сразу добавляем его в html
 const dom2 = append(dom1, node('h1', 'hello, world'));
