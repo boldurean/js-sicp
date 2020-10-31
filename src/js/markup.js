@@ -29,18 +29,16 @@ export const toString = (list) => {
 };
 
 // teachers alternative toString:
-/*
-export const toString = (html) => {
+/*  export const toString = (html) => {
   if (isEmpty(html)) {
     return '';
   }
-  const element = head(html);
+  const element = getName(html);
   const tag = getName(element);
   const value = getValue(element);
   const restOfHtml = toString(tail(html));
   return `${restOfHtml}<${tag}>${value}</${tag}>`;
-};
-*/
+};  */
 
 const dom1 = make();
 // Создаем тег и сразу добавляем его в html
@@ -51,6 +49,6 @@ const dom3 = append(dom2, node('h2', 'header2'));
 const tag = node('h3', 'header3');
 // Добавляем созданный тег в html-список
 const dom = append(dom3, tag);
-//
+
 // Преобразуем html-список в строчку
 console.log(toString(dom));
