@@ -38,7 +38,6 @@ const concat = (list1, list2) => {
 
 console.log(listToString(concat(l(3, 5, 8, 4), l(2, 9, 7))));
 
-
 /*
 
 export const has = (list, element) => {
