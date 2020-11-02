@@ -2,7 +2,7 @@ import { getValue, node } from '@hexlet/html-tags';
 import { head, isEmpty, tail } from '@hexlet/pairs-data';
 import { append, getName, make } from './markup.js';
 
-const reduce = (callbackFn, startingPoit, elements) => {
+const reduce = (callbackFn, init, elements) => {
   const iter = (items, acc) => {
     if (isEmpty(items)) {
       return acc;
@@ -11,7 +11,7 @@ const reduce = (callbackFn, startingPoit, elements) => {
     const newAcc = callbackFn(item, acc);
     return iter(tail(items), newAcc);
   };
-  return iter(elements, startingPoit);
+  return iter(elements, init);
 };
 
 const emptyTagsCount = (tagName, html) => reduce((item, acc) => {
