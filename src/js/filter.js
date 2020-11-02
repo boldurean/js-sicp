@@ -5,14 +5,11 @@ import {
   cons as consList,
 } from '@hexlet/pairs';
 import {
-  head, isEmpty, l, tail, toString as listToString,
+  head, isEmpty, l, tail, toString as listToString, reverse,
 } from '@hexlet/pairs-data';
 import {
   map,
 } from './map.js';
-import {
-  reverse,
-} from './strings.js';
 
 export const filter = (func, elements) => {
   const iter = (items, acc) => {

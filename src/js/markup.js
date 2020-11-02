@@ -29,6 +29,8 @@ export const toString = (list) => {
 };
 
 // teachers alternative toString:
+const dom1 = make();
+// Создаем тег и сразу добавляем его в html
 /*  export const toString = (html) => {
   if (isEmpty(html)) {
     return '';
@@ -38,10 +40,8 @@ export const toString = (list) => {
   const value = getValue(element);
   const restOfHtml = toString(tail(html));
   return `${restOfHtml}<${tag}>${value}</${tag}>`;
-};  */
 
-const dom1 = make();
-// Создаем тег и сразу добавляем его в html
+};  */
 const dom2 = append(dom1, node('h1', 'hello, world'));
 // Еще раз
 const dom3 = append(dom2, node('h2', 'header2'));
