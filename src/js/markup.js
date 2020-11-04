@@ -3,7 +3,7 @@ import {
 } from '@hexlet/pairs';
 // eslint-disable-next-line
 import {
-  l, isEmpty, cons as consList,
+  l, isEmpty, cons as consList, tail,
 } from '@hexlet/pairs-data';
 
 export const make = () => l();
@@ -29,7 +29,7 @@ export const toString = (list) => {
 };
 
 // teachers alternative toString:
-/*  export const toString = (html) => {
+export const toString2 = (html) => {
   if (isEmpty(html)) {
     return '';
   }
@@ -38,8 +38,7 @@ export const toString = (list) => {
   const value = getValue(element);
   const restOfHtml = toString(tail(html));
   return `${restOfHtml}<${tag}>${value}</${tag}>`;
-
-};  */
+};
 
 const dom1 = make();
 const dom2 = append(dom1, node('h1', 'hello, world'));
@@ -52,3 +51,4 @@ const dom = append(dom3, tag);
 
 // Преобразуем html-список в строчку
 console.log(toString(dom));
+console.log(toString2(dom));

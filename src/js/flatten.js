@@ -31,5 +31,3 @@ const list = l(1, 2, l(3, 5), l(l(4, 3), 2));
 
 console.log(listToString(flatten(list)));
 console.log(listToString(flatten2(list)));
-
-// (1, 2, 3, 5, 4, 3, 2)
