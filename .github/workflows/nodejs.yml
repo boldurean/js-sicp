@@ -22,11 +22,11 @@ jobs:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v2
         # Step's name
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.Generator-HTML ${{ matrix.node-version }}
         # Configures the node version used on GitHub-hosted runners
         # https://github.com/actions/setup-node
         uses: actions/setup-node@v1
-        # The Node.js version to configure
+        # The Node.Generator-HTML version to configure
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install, build

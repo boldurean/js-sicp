@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vsbdn/GeneratorHTML--SICP.git"
+    "url": "git+https://github.com/vsbdn/JS-SICP.git"
   },
   "author": "Vasilii Boldurean",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vsbdn/GeneratorHTML--SICP/issues"
+    "url": "https://github.com/vsbdn/JS-SICP/issues"
   },
-  "homepage": "https://github.com/vsbdn/GeneratorHTML--SICP#readme",
+  "homepage": "https://github.com/vsbdn/JS-SICP#readme",
   "dependencies": {
     "@hexlet/html-tags": "^1.0.0",
     "@hexlet/pairs": "^1.1.0",
