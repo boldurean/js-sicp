@@ -4,7 +4,6 @@ import { cons, car, toString as pairToString } from '@hexlet/pairs'; // eslint-d
 import { cons as consList, l, random, head, reverse, toString as listToString } from '@hexlet/pairs-data'; // eslint-disable-line
 import { typeTag } from '@hexlet/tagged-types';
 import { getName as getSimpleCardName, damage as simpleCardDamage } from './simpleCard.js';
-// eslint-disable-next-line no-unused-vars
 import { getName as getPercentCardName, damage as percentCardDamage } from './percentCard.js';
 
 const isSimpleCard = (card) => typeTag(card) === 'SimpleCard';
@@ -19,7 +18,7 @@ const run = (player1, player2, cards, customRandom) => {
     const card = customRandom(cards);
     // Populate cardName and damage using suitable card
     // use imports from  percentCard.js and simpleCard.js
-    const cardName = isSimpleCard(card) ? getSimpleCardName(card) : getSimpleCardName(card);
+    const cardName = isSimpleCard(card) ? getSimpleCardName(card) : getPercentCardName(card);
     const damage = isSimpleCard(card) ? simpleCardDamage(card) : percentCardDamage(card, health2);
 
     const newHealth = health2 - damage;
