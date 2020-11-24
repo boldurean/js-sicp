@@ -21,6 +21,7 @@
     "@hexlet/html-tags": "^1.0.0",
     "@hexlet/pairs": "^1.1.0",
     "@hexlet/pairs-data": "^1.1.0",
+    "@hexlet/tagged-types": "^1.1.0",
     "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
