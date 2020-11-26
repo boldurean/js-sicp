@@ -1,8 +1,13 @@
-import { cons, car, cdr } from '@hexlet/pairs';
-import { attach, contents } from '@hexlet/tagged-types';
+import { cons, car, cdr, toString as pairToString } from '@hexlet/pairs'; // eslint-disable-line
+import { attach } from '@hexlet/tagged-types';
+import { definer } from './generic.js';
 
-export const make = (name, damage) => attach('SimpleCard', cons(name, damage));
+const defmethod = definer('SimpleCard');
 
-export const getName = (self) => car(contents(self));
+const make = (name, damage) => attach('SimpleCard', cons(name, damage));
 
-export const damage = (self) => cdr(contents(self));
+export default make;
+
+defmethod('getName', (self) => car(self));
+
+defmethod('damage', (self) => cdr(self));

@@ -1,14 +1,6 @@
-// @ts-check
-
 import { cons, car, toString as pairToString } from '@hexlet/pairs'; // eslint-disable-line
 import { cons as consList, l, random, head, reverse, toString as listToString } from '@hexlet/pairs-data'; // eslint-disable-line
-import { typeTag } from '@hexlet/tagged-types';
-import { getName as getSimpleCardName, damage as simpleCardDamage } from './simpleCard.js';
-import { getName as getPercentCardName, damage as percentCardDamage } from './percentCard.js';
-
-const isSimpleCard = (card) => typeTag(card) === 'SimpleCard';
-// eslint-disable-next-line no-unused-vars
-const isPercentCard = (card) => typeTag(card) === 'PercentCard';
+import { getName, damage } from './card.js';
 
 const run = (player1, player2, cards, customRandom) => {
   const iter = (health1, name1, health2, name2, order, log) => {
@@ -16,15 +8,12 @@ const run = (player1, player2, cards, customRandom) => {
       return consList(cons(car(head(log)), `${name1} был убит`), log);
     }
     const card = customRandom(cards);
-    // Populate cardName and damage using suitable card
-    // use imports from  percentCard.js and simpleCard.js
-    const cardName = isSimpleCard(card) ? getSimpleCardName(card) : getPercentCardName(card);
-    const damage = isSimpleCard(card) ? simpleCardDamage(card) : percentCardDamage(card, health2);
-
-    const newHealth = health2 - damage;
+    const cardName = getName(card);
+    const points = damage(card, health2);
+    const newHealth = health2 - points;
 
     const message = `Игрок '${name1}' применил '${cardName}'
-      против '${name2}' и нанес урон '${damage}'`;
+      против '${name2}' и нанес урон '${points}'`;
     let stats;
     if (order === 1) {
       stats = cons(cons(health1, newHealth), message);
@@ -40,7 +29,6 @@ const run = (player1, player2, cards, customRandom) => {
   return reverse(iter(startHealth, player1, startHealth, player2, 1, l(logItem)));
 };
 
-export default (cards, customRandom = random) => {
-  const inner = (name1, name2) => run(name1, name2, cards, customRandom);
-  return inner;
-};
+export default (cards, customRandom = random) => (
+  (name1, name2) => run(name1, name2, cards, customRandom)
+);
