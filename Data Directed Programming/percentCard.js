@@ -1,13 +1,12 @@
-import { cons, car, cdr, toString as pairToString } from '@hexlet/pairs'; // eslint-disable-line
-import { attach } from '@hexlet/tagged-types';
-import { definer } from './generic.js';
-
-const defmethod = definer('PercentCard');
-
-const make = (name, percent) => attach('PercentCard', cons(name, percent));
+const make = (name, percent) => (message, health) => {
+  switch (message) {
+    case 'getName':
+      return name;
+    case 'damage':
+      return Math.round(health * (percent / 100));
+    default:
+      return 'undefined method';
+  }
+};
 
 export default make;
-
-defmethod('getName', (self) => car(self));
-
-defmethod('damage', (self, health) => Math.round(health * (cdr(self) / 100)));

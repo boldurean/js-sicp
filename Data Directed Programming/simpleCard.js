@@ -1,13 +1,12 @@
-import { cons, car, cdr, toString as pairToString } from '@hexlet/pairs'; // eslint-disable-line
-import { attach } from '@hexlet/tagged-types';
-import { definer } from './generic.js';
-
-const defmethod = definer('SimpleCard');
-
-const make = (name, damage) => attach('SimpleCard', cons(name, damage));
+const make = (name, damage) => (message) => {
+  switch (message) {
+    case 'getName':
+      return name;
+    case 'damage':
+      return damage;
+    default:
+      return 'undefined method';
+  }
+};
 
 export default make;
-
-defmethod('getName', (self) => car(self));
-
-defmethod('damage', (self) => cdr(self));
