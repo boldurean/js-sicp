@@ -1,12 +1,7 @@
-const make = (name, damage) => (message) => {
-  switch (message) {
-    case 'getName':
-      return name;
-    case 'damage':
-      return damage;
-    default:
-      return 'undefined method';
-  }
-};
+const make = (name, damage) => ({
+  name,
+  // eslint-disable-next-line no-unused-vars
+  damage: (health) => damage,
+});
 
 export default make;
