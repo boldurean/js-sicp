@@ -1,7 +1,10 @@
-const make = (name, damage) => ({
-  name,
-  // eslint-disable-next-line no-unused-vars
-  damage: (health) => damage,
-});
+export default class SimpleCard {
+  constructor(name, damagePoints) {
+    this.name = name;
+    this.damagePoints = damagePoints;
+  }
 
-export default make;
+  damage() {
+    return this.damagePoints;
+  }
+}
