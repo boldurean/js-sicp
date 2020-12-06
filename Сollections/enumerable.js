@@ -36,23 +36,3 @@ export default class Enumerable {
     return this.collection.slice();
   }
 }
-
-const cars = [
-  { brand: 'bmw', model: 'm5', year: 2014 },
-  { brand: 'bmw', model: 'm4', year: 2013 },
-  { brand: 'kia', model: 'sorento', year: 2014 },
-  { brand: 'kia', model: 'rio', year: 2010 },
-  { brand: 'kia', model: 'sportage', year: 2012 },
-];
-
-const coll = new Enumerable(cars, 'Lera');
-
-console.log(coll);
-
-const coll2 = new Enumerable(cars, 'Vasia');
-
-coll2.collection[0].brand = 'TESASLKDJASKD';
-
-console.log(coll2);
-
-console.log(coll);
