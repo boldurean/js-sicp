@@ -1,7 +1,6 @@
 export default class Enumerable {
-  constructor(collection, name) {
-    this.collection = collection.map((a) => ({ ...a }));
-    this.name = name;
+  constructor(collection) {
+    this.collection = collection;
   }
 
   select(fn) {
