@@ -4,8 +4,8 @@ export default class Enumerable {
   }
 
   select(fn) {
-    this.collection = this.collection.map(fn);
-    return this;
+    const selected = this.collection.map(fn);
+    return new Enumerable(selected);
   }
 
   orderBy(fn, sortType = 'asc') {
@@ -22,13 +22,13 @@ export default class Enumerable {
       }
       return 0;
     };
-    this.collection.sort(comparator);
-    return this;
+    const ordered = [...this.collection].sort(comparator);
+    return new Enumerable(ordered);
   }
 
   where(fn) {
-    this.collection = this.collection.filter(fn);
-    return this;
+    const filtered = this.collection.filter(fn);
+    return new Enumerable(filtered);
   }
 
   toArray() {
