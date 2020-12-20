@@ -1,12 +1,12 @@
 export default class Enumerable {
-  constructor(collection, operations) {
-    this.collection = collection;
+  constructor(fn, operations) {
+    this.fn = fn;
     this.operations = operations || [];
   }
 
   build(fn) {
     const newOps = [...this.operations, fn];
-    return new Enumerable([...this.collection], newOps);
+    return new Enumerable(this.fn, newOps);
   }
 
   select(fn) {
@@ -34,7 +34,14 @@ export default class Enumerable {
     return this.build((coll) => coll.filter(fn));
   }
 
-  toArray() {
-    return this.operations.reduce((coll, fn) => fn(coll), this.collection);
+  toArray(length) {
+    const dataColl = [...new Array(length)].map((item) => this.fn(item));
+    return this.operations.reduce((coll, fn) => fn(coll), dataColl);
   }
 }
+
+const coll = new Enumerable(() => Math.floor(Math.random() * 1000));
+
+coll.select((x) => x + 2).where((x) => x % 2 !== 0).toArray(10);
+
+console.log(coll.select((x) => x + 2).where((x) => x % 2 !== 0).toArray(300));
