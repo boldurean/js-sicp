@@ -34,7 +34,19 @@ export default class Enumerable {
     return this.build((coll) => coll.filter(fn));
   }
 
+  getProcessedCollection() {
+    if (!this.memo) {
+      this.memo = this.operations.reduce((acc, func) => func(acc), this.collection);
+    }
+
+    return this.memo;
+  }
+
+  get length() {
+    return this.getProcessedCollection().length;
+  }
+
   toArray() {
-    return this.operations.reduce((coll, fn) => fn(coll), this.collection);
+    return this.getProcessedCollection().slice();
   }
 }
