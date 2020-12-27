@@ -5,7 +5,7 @@ export default class Enumerable {
   }
 
   build(fn) {
-    return new Enumerable([...this.collection], [...this.operations, fn]);
+    return new Enumerable(this.collection.slice(), this.operations.concat(fn));
   }
 
   select(fn) {
@@ -29,8 +29,18 @@ export default class Enumerable {
     return this.build((coll) => [...coll].sort(comparator));
   }
 
-  where(fn) {
-    return this.build((coll) => coll.filter(fn));
+  where(...predicates) {
+    const fns = predicates.map((predicate) => {
+      if (typeof predicate === 'function') {
+        return (coll) => coll.filter(predicate);
+      }
+
+      const keys = Object.keys(predicate);
+      return (coll) => coll.filter(
+        (element) => (keys.every((key) => predicate[key] === element[key])),
+      );
+    });
+    return this.build(fns);
   }
 
   getProcessedCollection() {
@@ -49,3 +59,21 @@ export default class Enumerable {
     return this.getProcessedCollection().slice();
   }
 }
+
+const cars = [
+  { brand: 'bmw', model: 'm5', year: 2014 },
+  { brand: 'bmw', model: 'm4', year: 2013 },
+  { brand: 'kia', model: 'sorento', year: 2014 },
+  { brand: 'kia', model: 'rio', year: 2010 },
+  { brand: 'kia', model: 'sportage', year: 2012 },
+];
+const coll = new Enumerable(cars);
+
+const result = coll
+  .where((car) => car.brand === 'kia')
+  .where((car) => car.year > 2011);
+
+const result3 = coll.where({ brand: 'kia', model: 'sorento' });
+
+console.log(result.toArray());
+console.log(result3.toArray());
