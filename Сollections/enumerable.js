@@ -5,8 +5,7 @@ export default class Enumerable {
   }
 
   build(fn) {
-    const newOps = [...this.operations, fn];
-    return new Enumerable([...this.collection], newOps);
+    return new Enumerable([...this.collection], [...this.operations, fn]);
   }
 
   select(fn) {

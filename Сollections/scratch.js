@@ -1,12 +1,11 @@
 export default class Enumerable {
-  constructor(fn, operations) {
-    this.fn = fn;
+  constructor(collection, operations) {
+    this.collection = collection;
     this.operations = operations || [];
   }
 
   build(fn) {
-    const newOps = [...this.operations, fn];
-    return new Enumerable(this.fn, newOps);
+    return new Enumerable(this.collection.slice(), this.operations.concat(fn));
   }
 
   select(fn) {
@@ -30,18 +29,51 @@ export default class Enumerable {
     return this.build((coll) => [...coll].sort(comparator));
   }
 
-  where(fn) {
-    return this.build((coll) => coll.filter(fn));
+  where(...predicates) {
+    const fns = predicates.map((predicate) => {
+      if (typeof predicate === 'function') {
+        return (coll) => coll.filter(predicate);
+      }
+
+      const keys = Object.keys(predicate);
+      return (coll) => coll.filter(
+        (element) => (keys.every((key) => predicate[key] === element[key])),
+      );
+    });
+    return this.build(fns);
   }
 
-  toArray(length) {
-    const dataColl = [...new Array(length)].map((item) => this.fn(item));
-    return this.operations.reduce((coll, fn) => fn(coll), dataColl);
+  getProcessedCollection() {
+    if (!this.memo) {
+      this.memo = this.operations.reduce((acc, func) => func(acc), this.collection);
+    }
+
+    return this.memo;
+  }
+
+  get length() {
+    return this.getProcessedCollection().length;
+  }
+
+  toArray() {
+    return this.getProcessedCollection().slice();
   }
 }
 
-const coll = new Enumerable(() => Math.floor(Math.random() * 1000));
+const cars = [
+  { brand: 'bmw', model: 'm5', year: 2014 },
+  { brand: 'bmw', model: 'm4', year: 2013 },
+  { brand: 'kia', model: 'sorento', year: 2014 },
+  { brand: 'kia', model: 'rio', year: 2010 },
+  { brand: 'kia', model: 'sportage', year: 2012 },
+];
+const coll = new Enumerable(cars);
 
-coll.select((x) => x + 2).where((x) => x % 2 !== 0).toArray(10);
+const result = coll
+  .where((car) => car.brand === 'kia')
+  .where((car) => car.year > 2011);
 
-console.log(coll.select((x) => x + 2).where((x) => x % 2 !== 0).toArray(300));
+const result3 = coll.where({ brand: 'kia', model: 'sorento' });
+
+console.log(result.toArray());
+console.log(result3.toArray());
